@@ -46,8 +46,8 @@ const danhSachSanPham = [
 const duLieuMauHoSo = {
   hoTen: "Ngô Thùy Ngân",
   chucDanh: "Sinh viên Sư phạm Tin học",
-  email: "ngannt.k66sptin@utb.edu.vn",
-  soDienThoai: "0934267402",
+  email: "nganngothuy@1234.gmail.com",
+  soDienThoai: "0123456789",
   kyNang: "HTML, CSS, JavaScript, C++, Thiết kế bài giảng",
   mucTieu: "Trở thành giáo viên Tin học giỏi, truyền cảm hứng học tập cho học sinh."
 };
