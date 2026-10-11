@@ -3,7 +3,7 @@
 
 # 1. Thông tin nhóm (Nhóm XX)
 - **Cordinator:** [Hoàng Hà Minh Đức - 2025A0560]
-- **Coder (Driver):** [Khúc Trọng Nam - 2025A05]
+- **Coder (Driver):** [Khúc Trọng Nam - 2025A0580]
 - **Navigator:** [Hà Tuấn Hưng - 2025A0569]
 - **Tester:** [Ngô Thuỳ Ngân - 2025A0581]
 
