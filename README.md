@@ -3,12 +3,12 @@
 
 # 1. Thông tin nhóm (Nhóm XX)
 - **Cordinator:** [Hoàng Hà Minh Đức - 2025A0560]
-- **Coder (Driver):** [Khúc Trọng Nam - ]
-- **Navigator:** [Hà Tuấn Hưng - ]
-- **Tester:** [Ngô Thuỳ Ngân - ]
+- **Coder (Driver):** [Khúc Trọng Nam - 2025A05]
+- **Navigator:** [Hà Tuấn Hưng - 2025A0569]
+- **Tester:** [Ngô Thuỳ Ngân - 2025A0581]
 
 # 2. Giới thiệu dự án
-- Mô tả ngắn gọn về công cụ sinh hồ sơ cá nhân...
+- Hồ sơ năng lực nhóm sinh viên sư phạm Tin
 
 # 3. Cấu trúc thư mục dự án
 - `index.html` - Trang chính
