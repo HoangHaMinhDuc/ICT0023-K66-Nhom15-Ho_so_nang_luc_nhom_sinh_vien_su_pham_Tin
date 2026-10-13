@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="Hồ sơ năng lực nhóm sinh viên sư phạm Tin: thành viên, sản phẩm dạy học và lập trình, kỹ năng.">
+<title>Tạo hồ sơ | Hồ sơ năng lực nhóm Sư phạm Tin</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;700;800&family=Patrick+Hand&display=swap" rel="stylesheet">
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+<link rel="icon" href="image/logo.jpg" type="image/jpeg">
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+<a class="skip-link" href="#main">Bỏ qua điều hướng</a>
+<header class="site-nav no-print"><nav class="navbar navbar-expand-lg"><div class="container">
+<a class="navbar-brand d-flex align-items-center gap-2" href="index.html"><img class="brand-logo" src="image/logo.jpg" width="36" height="36" alt="Logo nhóm Sư phạm Tin" onerror="this.remove()"><span>Hồ sơ năng lực nhóm Sư phạm Tin</span></a>
+<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#menu" aria-controls="menu" aria-expanded="false" aria-label="Mở menu"><span class="navbar-toggler-icon"></span></button>
+<div class="collapse navbar-collapse" id="menu"><ul class="navbar-nav ms-auto"><li class="nav-item"><a class="nav-link" href="index.html">Giới thiệu</a></li><li class="nav-item"><a class="nav-link" href="thanhvien.html">Thành viên</a></li><li class="nav-item"><a class="nav-link" href="sanpham.html">Sản phẩm</a></li><li class="nav-item"><a class="nav-link" href="kynang.html">Kỹ năng</a></li><li class="nav-item"><a class="nav-link active" href="congcu.html" aria-current="page">Tạo hồ sơ</a></li><li class="nav-item"><a class="nav-link" href="lienhe.html">Liên hệ</a></li></ul></div>
+</div></nav></header>
+<main id="main">
+
+<section class="section"><div class="container">
+<div class="page-head no-print"><div class="page-head-text"><h1>Tạo hồ sơ cá nhân dạng in</h1>
+<p class="lead-dark no-print">Nhập thông tin, hồ sơ cập nhật ngay bên phải. Không dùng thông tin cá nhân thật khi thử.</p></div><img class="page-banner" src="image/bannertaohoso.jpg" width="480" height="300" alt="Ảnh mẫu một tờ hồ sơ cá nhân đã in (thay bằng ảnh hồ sơ thật)"></div>
+<div class="row g-4">
+<div class="col-12 col-lg-5 no-print"><form id="cv-form" class="panel" novalidate>
+<div id="cv-errors" class="alert alert-danger d-none" role="alert" tabindex="-1"></div>
+<div class="mb-2"><label for="t-name" class="form-label">Họ tên (hoặc biệt danh)</label><input id="t-name" class="form-control" autocomplete="off"><div class="invalid-feedback"></div></div>
+<div class="mb-2"><label for="t-class" class="form-label">Lớp / ngành</label><input id="t-class" class="form-control" autocomplete="off"><div class="invalid-feedback"></div></div>
+<div class="mb-2"><label for="t-email" class="form-label">Email liên hệ</label><input id="t-email" class="form-control" autocomplete="off"><div class="invalid-feedback"></div></div>
+<div class="mb-2"><label for="t-start" class="form-label">Năm bắt đầu học lập trình</label><input id="t-start" class="form-control" inputmode="numeric"><div class="invalid-feedback"></div></div>
+<div class="mb-2"><label for="t-projects" class="form-label">Số sản phẩm đã làm</label><input id="t-projects" class="form-control" inputmode="numeric"><div class="invalid-feedback"></div></div>
+<div class="mb-2"><label for="t-photo" class="form-label">Ảnh đại diện (tùy chọn, JPG/PNG/WebP, tối đa 2 MB)</label><input id="t-photo" type="file" accept="image/jpeg,image/png,image/webp" class="form-control"><div class="invalid-feedback"></div><div class="form-text small text-muted-fg">Ảnh chỉ đọc trên trình duyệt, không tải lên máy chủ.</div></div>
+<div class="mb-2"><label for="t-skills" class="form-label">Kỹ năng (cách nhau bằng dấu phẩy, tối đa 8)</label><input id="t-skills" class="form-control" autocomplete="off"><div class="invalid-feedback"></div></div>
+<div class="mb-3"><label for="t-goal" class="form-label">Mục tiêu nghề nghiệp (tối đa 200 ký tự)</label><textarea id="t-goal" class="form-control" rows="3"></textarea><div class="invalid-feedback"></div></div>
+<button class="btn btn-ink" type="submit">Tạo hồ sơ</button>
+<button id="cv-sample" class="btn btn-mark" type="button">Dùng thử</button>
+<button id="cv-reset" class="btn btn-outline-ink" type="reset">Đặt lại</button>
+</form></div>
+<div class="col-12 col-lg-7">
+<div class="d-flex justify-content-between align-items-center mb-2 no-print"><h2 class="h5 mb-0">Xem trước</h2><button id="cv-print" class="btn btn-outline-ink btn-sm" type="button" disabled>In hồ sơ</button></div>
+<div class="progress-label no-print"><span>Độ hoàn thiện hồ sơ</span><span id="cv-progress-pct">0%</span></div>
+<div class="progress mb-3 no-print" role="progressbar" aria-label="Độ hoàn thiện hồ sơ" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0" id="cv-progress-wrap"><div id="cv-progress" class="progress-bar" style="width:0%"></div></div>
+<article id="cv" class="cv-sheet" aria-live="polite"><div class="cv-empty-state"><img src="image/cvtrong.jpg" width="240" height="160" alt="Tờ hồ sơ còn trống đặt cạnh cây bút (thay bằng ảnh minh họa của nhóm)"><p>Chưa có dữ liệu. Nhập vào form hoặc bấm “Dùng thử”.</p></div></article>
+<p class="small text-muted-fg mt-2 no-print">Hồ sơ chỉ mang tính tham khảo. Số năm kinh nghiệm được tính từ năm hiện tại trừ năm bắt đầu.</p>
+</div></div></div></section>
+
+</main>
+<footer class="site-footer no-print"><div class="container">
+<p class="mb-1"><strong>Hồ sơ năng lực nhóm Sư phạm Tin</strong> — bài tập lớn ICT0023, K66, Nhóm 15.</p>
+<p class="mb-0 small">Thông tin trên trang là dữ liệu mẫu hoặc đã ẩn danh. Dữ liệu nhập chỉ tồn tại trong phiên đang mở.</p>
+</div></footer>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+<script src="js/data.js"></script>
+<script src="js/main.js"></script>
+</body>
+</html>
