@@ -111,3 +111,51 @@ img{max-width:100%;height:auto}
 
 @media (prefers-reduced-motion:reduce){*{transition:none!important;scroll-behavior:auto!important}.btn:hover,.btn:active{transform:none}}
 @media print{body{background:#fff}.no-print,.site-nav,.site-footer{display:none!important}.cv-sheet{border:0;border-left:6px solid #C8372D;box-shadow:none}.section{padding:0}.page-head .page-banner{display:none}}
+.card {
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+.card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1) !important;
+}
+.card-img-top {
+  object-fit: cover;
+  height: 180px;
+}
+.accordion-item {
+  border-radius: var(--radius) !important;
+  margin-bottom: 12px;
+  overflow: hidden;
+}
+.accordion-button:not(.collapsed) {
+  background-color: var(--muted);
+  color: var(--ink);
+  font-weight: 600;
+}
+
+.accordion-button:focus {
+  box-shadow: none;
+}
+.modal-content {
+  border-radius: var(--radius);
+  border: 1.5px solid var(--ink);
+}
+.modal-header {
+  border-bottom: 1px solid var(--border);
+  background-color: var(--paper);
+}
+
+@media (max-width: 575.98px) {
+  html, body {
+    max-width: 100vw;
+    overflow-x: hidden;
+  }
+  .container {
+    padding-left: 15px;
+    padding-right: 15px;
+  }
+  img, svg, table {
+    max-width: 100%;
+    height: auto;
+  }
+}
