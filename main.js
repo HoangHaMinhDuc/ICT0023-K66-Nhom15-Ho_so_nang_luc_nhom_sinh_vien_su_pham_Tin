@@ -1,28 +1,28 @@
 "use strict";
 const $id = (id) => document.getElementById(id);
-const norm = (s) => s.normalize("NFD").replace(/[\u0300-\u036f]/g, "").replace(/đ/g, "d").toLowerCase();
+const norm = (s) => s.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "").replace(/đ/g, "d");
 const el = (tag, cls, text) => { const e = document.createElement(tag); if (cls) e.className = cls; if (text !== undefined) e.textContent = text; return e; };
 const chips = (arr) => { const f = document.createDocumentFragment(); arr.forEach((s) => f.appendChild(el("span", "chip", s))); return f; };
+/* Hàng chip riêng: không bị kéo giãn khi nằm trong thẻ dùng flex-column */
 const chipRow = (arr) => { const d = el("div", "chip-row"); d.appendChild(chips(arr)); return d; };
+/* Loại sản phẩm -> màu thanh đầu thẻ (luôn kèm chữ trong huy hiệu) */
 const TYPE_CLASS = { "Dạy học": "accent-yellow", "Lập trình": "accent-green" };
 const typeBadge = (type) => el("span", "type-badge " + (TYPE_CLASS[type] || "accent-green"), type);
-const CV_EMPTY = '<div class="cv-empty-state"><img data-pic="images/cv-trong" src="images/cv-trong.svg" width="240" height="160" alt="Tờ hồ sơ còn trống đặt cạnh cây bút (thay bằng ảnh minh họa của nhóm)"><p>Chưa có dữ liệu. Nhập vào form hoặc bấm “Dùng thử”.</p></div>';
+const CV_EMPTY = '<div class="cv-empty-state"><img src="image/cvtrong.jpg" width="240" height="160" alt="Tờ hồ sơ còn trống đặt cạnh cây bút (thay bằng ảnh minh họa của nhóm)"><p>Chưa có dữ liệu. Nhập vào form hoặc bấm “Dùng thử”.</p></div>';
 
+/* Ảnh: mọi tệp trong image/ đều là .jpg, truyền thẳng đường dẫn đầy đủ */
+function picture(src, alt, cls, w, h) {
+  const i = el("img", cls || ""); i.src = src; i.alt = alt; i.loading = "lazy"; if (w) { i.width = w; i.height = h; }
+  return i;
+}
+function photoBox(src, alt, cls) {
+  const box = el("div", "thumb has-photo " + (cls || "")); box.appendChild(picture(src, alt)); return box;
+}
+/* Ảnh nền tùy chọn: chỉ gắn khi tải thành công */
 function loadImage(src, onOk) {
   const img = new Image();
   img.onload = () => onOk(img);
   img.src = src;
-}
-function picture(base, alt, cls, w, h) {
-  const i = el("img", cls || ""); i.src = base + ".svg"; i.alt = alt; i.loading = "lazy"; if (w) { i.width = w; i.height = h; }
-  loadImage(base + "." + IMG_EXT, () => { i.src = base + "." + IMG_EXT; });
-  return i;
-}
-function photoBox(base, alt, cls) {
-  const box = el("div", "thumb has-photo " + (cls || "")); box.appendChild(picture(base, alt)); return box;
-}
-function initPictures() {
-  document.querySelectorAll("img[data-pic]").forEach((i) => { const b = i.dataset.pic; i.src = b + ".svg"; loadImage(b + "." + IMG_EXT, () => { i.src = b + "." + IMG_EXT; }); });
 }
 function initHero() {
   const hero = $id("hero");
@@ -43,6 +43,7 @@ function initGallery() {
 }
 const thumbFor = (p) => photoBox(IMAGES.product(p.id), PRODUCT_ALT[p.id] || "Ảnh sản phẩm " + p.title);
 
+/* Trang chủ: số liệu tính từ mảng */
 function initStats() {
   if (!$id("stat-members")) return;
   $id("stat-members").textContent = MEMBERS.length;
@@ -50,6 +51,7 @@ function initStats() {
   $id("stat-skills").textContent = SKILLS.length;
 }
 
+/* Thành viên: render + tìm kiếm */
 function initMembers() {
   const box = $id("member-list");
   if (!box) return;
@@ -73,6 +75,7 @@ function initMembers() {
   render();
 }
 
+/* Sản phẩm: lọc nhiều tiêu chí + sắp xếp + modal */
 function initProducts() {
   const box = $id("product-list");
   if (!box) return;
@@ -97,7 +100,12 @@ function initProducts() {
       b.addEventListener("click", () => {
         $id("productModalTitle").textContent = p.title;
         const mb = $id("productModalBody"); mb.innerHTML = "";
-        mb.appendChild(thumbFor(p)); const mm = el("p", "small text-muted-fg"); mm.appendChild(typeBadge(p.type)); mm.appendChild(document.createTextNode("Năm học " + p.year)); mb.appendChild(mm); mb.appendChild(el("p", "", p.detail)); mb.appendChild(chipRow(p.skills));
+        mb.appendChild(thumbFor(p)); const mm = el("p", "small text-muted-fg"); mm.appendChild(typeBadge(p.type)); mm.appendChild(document.createTextNode("Năm học " + p.year)); mb.appendChild(mm); mb.appendChild(el("p", "", p.detail));
+if (p.link) {
+  const a = el("a", "", "Xem sản phẩm");
+  a.href = p.link; a.target = "_blank"; a.rel = "noopener noreferrer";
+  const lp = el("p"); lp.appendChild(a); mb.appendChild(lp);
+}; mb.appendChild(chipRow(p.skills));
         modal.show();
       });
       body.appendChild(b); card.appendChild(thumbFor(p)); card.appendChild(body); col.appendChild(card); box.appendChild(col);
@@ -110,6 +118,7 @@ function initProducts() {
   render();
 }
 
+/* Kỹ năng: bảng sắp xếp + hỏi đáp (jQuery) */
 function initSkills() {
   if (!$id("skill-body")) return;
   let key = "level", dir = -1;
@@ -139,6 +148,7 @@ function initSkills() {
   $("#faq-search").on("input", filter); filter();
 }
 
+/* Tạo hồ sơ: kiểm tra dữ liệu + tính tức thời + in (jQuery cho xem trước) */
 function initCv() {
   const form = $id("cv-form");
   if (!form) return;
@@ -213,10 +223,11 @@ function initCv() {
     const s = { "t-name": "Nguyễn Văn Mẫu", "t-class": "ĐHSP Tin K66", "t-email": "mau@example.com", "t-start": String(YEAR - 3), "t-projects": "5", "t-skills": "HTML/CSS, JavaScript, Git, Soạn bài giảng", "t-goal": "Trở thành giáo viên Tin học biết dùng sản phẩm số để dạy học." };
     ids.forEach((id) => { $id(id).value = s[id]; }); form.requestSubmit();
   });
-  form.addEventListener("reset", () => { clear(); if (photoUrl) { URL.revokeObjectURL(photoUrl); photoUrl = ""; } $id("cv").innerHTML = CV_EMPTY; initPictures(); $id("cv-print").disabled = true; setTimeout(() => updateBar(read()), 0); });
+  form.addEventListener("reset", () => { clear(); if (photoUrl) { URL.revokeObjectURL(photoUrl); photoUrl = ""; } $id("cv").innerHTML = CV_EMPTY; $id("cv-print").disabled = true; setTimeout(() => updateBar(read()), 0); });
   $id("cv-print").addEventListener("click", () => window.print());
 }
 
+/* Liên hệ */
 function initContact() {
   const form = $id("contact-form");
   if (!form) return;
@@ -245,4 +256,4 @@ function initContact() {
   form.addEventListener("reset", () => { clear(); setTimeout(upd, 0); });
 }
 
-document.addEventListener("DOMContentLoaded", () => { initPictures(); initHero(); initGallery(); initStats(); initMembers(); initProducts(); initSkills(); initCv(); initContact(); });
+document.addEventListener("DOMContentLoaded", () => { initHero(); initGallery(); initStats(); initMembers(); initProducts(); initSkills(); initCv(); initContact(); });
