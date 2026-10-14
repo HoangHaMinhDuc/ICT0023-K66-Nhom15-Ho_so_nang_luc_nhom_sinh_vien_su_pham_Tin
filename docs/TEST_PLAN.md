@@ -43,3 +43,14 @@ Người lập: Tester(Ngô Thùy Ngân)
 **7 (Biên 4 - Chuỗi văn bản cực dài):**
   - Thao tác: Dán đoạn văn bản hơn 1.000 ký tự vào ô Kỹ năng hoặc Mục tiêu.
   - Kết quả mong đợi: Khung hiển thị hồ sơ tự động xuống dòng, không làm vỡ bố cục giao diện hay tràn viền trang web.
+
+---
+
+## 4. Báo cáo kiểm thử tương thích trình duyệt & Tính khả đọc CSS
+- **Môi trường thử nghiệm:**
+  - Trình duyệt: Google Chrome, Microsoft Edge, Cốc Cốc.
+  - Chế độ: Đã kiểm tra trên Chế độ ẩn danh (Incognito/InPrivate) để loại trừ cache và tiện ích mở rộng.
+- **Kết quả kiểm tra CSS & Khả năng đọc (Readability):**
+  - **Độ tương phản:** Màu chữ và nền đạt yêu cầu thị giác, không có hiện tượng chữ chìm vào nền.
+  - **Bố cục văn bản:** Kích thước font chữ rõ ràng, khoảng cách dòng hợp lý, văn bản tự động xuống dòng không bị tràn khung viền thẻ card.
+  - **Tương thích:** Toàn bộ thành phần Bootstrap và CSS tùy biến hiển thị đồng nhất, không phát sinh lỗi lệch giao diện giữa các trình duyệt.
