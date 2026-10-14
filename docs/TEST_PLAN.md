@@ -44,8 +44,6 @@ Người lập: Tester(Ngô Thùy Ngân)
   - Thao tác: Dán đoạn văn bản hơn 1.000 ký tự vào ô Kỹ năng hoặc Mục tiêu.
   - Kết quả mong đợi: Khung hiển thị hồ sơ tự động xuống dòng, không làm vỡ bố cục giao diện hay tràn viền trang web.
 
----
-
 ## 4. Báo cáo kiểm thử tương thích trình duyệt & Tính khả đọc CSS
 - **Môi trường thử nghiệm:**
   - Trình duyệt: Google Chrome, Microsoft Edge, Cốc Cốc.
@@ -54,3 +52,12 @@ Người lập: Tester(Ngô Thùy Ngân)
   - **Độ tương phản:** Màu chữ và nền đạt yêu cầu thị giác, không có hiện tượng chữ chìm vào nền.
   - **Bố cục văn bản:** Kích thước font chữ rõ ràng, khoảng cách dòng hợp lý, văn bản tự động xuống dòng không bị tràn khung viền thẻ card.
   - **Tương thích:** Toàn bộ thành phần Bootstrap và CSS tùy biến hiển thị đồng nhất, không phát sinh lỗi lệch giao diện giữa các trình duyệt.
+
+## 7. Thiết kế bộ ca kiểm thử đặc biệt cho Form (Edge Cases)[cite: 10]
+| STT | Tên ca kiểm thử | Loại dữ liệu | Dữ liệu thử nghiệm (Input) | Kết quả mong đợi (Expected Output) |
+| :---: | :--- | :--- | :--- | :--- |
+| **TC-EDGE-01** | Bỏ trống bắt buộc | Dữ liệu rỗng | Không nhập Họ tên, Email | Báo lỗi cảnh báo trường bắt buộc, không cho phép gửi dữ liệu[cite: 10]. |
+| **TC-EDGE-02** | Chuỗi ký tự cực dài | Độ dài biên (Boundary) | Nhập chuỗi 500 ký tự vào ô Tóm tắt bản thân / Mục tiêu | Khung preview tự động xuống dòng (word-wrap), không tràn vỡ thẻ card[cite: 10]. |
+| **TC-EDGE-03** | Chống mã độc XSS | Ký tự đặc biệt (Security) | `<script>alert('XSS')</script>`, `<b>Test</b>`, `@#$%^&*()` | Hiển thị dưới dạng chuỗi văn bản an toàn (escaped text), không thực thi mã lệnh HTML/JS[cite: 10]. |
+| **TC-EDGE-04** | Sai định dạng Email | Giá trị không hợp lệ | `ngantk@`, `ngantk.com`, `ngan@gmail` (thiếu phần mở rộng domain) | Trình duyệt kích hoạt cảnh báo sai chuẩn email. |
+| **TC-EDGE-05** | Số điện thoại chứa ký tự | Định dạng số | `0987abc123`, `098-765-432` | Báo lỗi định dạng chỉ chấp nhận đúng 10 chữ số tiêu chuẩn. |
